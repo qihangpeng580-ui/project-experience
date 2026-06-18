@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI解题机 · 智能书写机器人 | 彭启航</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:#f5f5f5;color:#333;min-height:100vh}
+.container{max-width:900px;margin:0 auto;padding:30px 24px}
+.header{background:#fff;border-bottom:1px solid #e8e8e8;padding:36px 24px;text-align:center}
+.header h1{font-size:1.6em;color:#eb2f96;margin-bottom:6px}
+.header .sub{color:#999;font-size:1em}
+.card{background:#fff;border-radius:10px;padding:28px;margin:20px 0;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.card h2{font-size:1.2em;color:#eb2f96;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #f0f0f0}
+.card p{line-height:1.8;color:#555;margin:6px 0}
+.card strong{color:#333}
+.tag{display:inline-block;background:#fafafa;color:#c41d7f;padding:3px 12px;border-radius:14px;font-size:0.88em;margin:3px}
+.highlight{background:#fff;border-left:3px solid #eb2f96;padding:14px 18px;border-radius:0 6px 6px 0;margin:12px 0}
+.footer{text-align:center;padding:30px;color:#bbb;font-size:0.9em}
+a{text-decoration:none;color:#1890ff}
+a:hover{color:#40a9ff}
+.cert-box{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:16px}
+.cert-box .item{text-align:center;max-width:320px}
+.cert-box .item img{max-width:100%;border-radius:6px;border:1px solid #eee;margin-bottom:8px}
+.cert-box .item p{font-size:0.9em;color:#999;margin-top:8px}
+</style></head>
+<body>
+<div class="header"><h1>AI 解题机 · 智能书写机器人</h1><p class="sub">EE299FZ Analogue Electronics Project &middot; 2026.3 - 2026.6</p></div>
+<div class="container">
+<div class="card"><h2>项目概况</h2>
+<p><strong>课程：</strong>EE299FZ Analogue Electronics Project（福州大学梅努斯国际工程学院）</p>
+<p><strong>项目名：</strong>Intelligent Writing Robot Based on Visual Perception and Large Language Model</p>
+<p><strong>团队成员：</strong>Yiping Yin, Ziyang Chen, Qihang Peng, Haodong Wu, Hang Chen（5人）</p>
+<p><strong>指导教师：</strong>Dr. Zain Anwar Ali</p>
+<p><strong>我的角色：</strong>硬件研发 — ESP32 三轴控制板设计</p>
+</div>
+<div class="card"><h2>项目简介</h2>
+<p>本项目是一个基于视觉感知与大语言模型的智能书写机器人。系统通过摄像头拍摄学生纸质作业，利用多模态大模型分析题目并生成答案，再由 CoreXY 机械臂驱动笔在纸上自动书写批改评语与解题步骤。整套系统实现了从"看到题目→理解题目→生成答案→书写输出"的全自动化闭环，旨在减轻教师批改作业的重复性负担。</p>
+</div>
+<div class="card"><h2>我的核心贡献 — 硬件设计</h2>
+<p><strong>1. 电源树设计</strong></p>
+<p>设计从 12V 直流输入到多路稳压的完整供电链路。12V 经 SS34 肖特基二极管防反接保护，通过 DC-DC Buck 降压至 5V（功率电感+反馈分压），5V 再经独立 LDO 输出 3.3V 数字逻辑电源、3.3V 模拟参考电源、SD 卡独立供电。大电容并联小电容实现低频储能+高频去耦，电机启停时电压不跌落。</p>
+<div class="highlight"><p><strong>2. ESP32-WROOM-32E 主控板</strong></p><p>基于 ESP32 模组设计核心控制板，集成 WiFi/蓝牙无线通信。负责与上位机视觉系统通信、解析控制指令、输出步进电机脉冲与方向信号。详细硬件解析文档达 75KB，覆盖芯片选型依据、GPIO 分配、外设接口电平匹配。</p></div>
+<p style="margin-top:14px"><strong>3. 四路步进电机驱动</strong></p><p>选型 HR4988E 驱动芯片，支持 1/16 微步细分，驱动 CoreXY 双电机 + Z 轴抬笔电机 + 激光控制。设计了使能、方向、步进脉冲三线控制接口，通过 ESP32 GPIO 直接控制。</p>
+<p style="margin-top:14px"><strong>4. 辅助外设集成</strong></p><p>集成 CH340 USB-UART 调试串口、SD 卡模块（SPI 模式）用于离线任务存储、伺服电机 PWM 控制实现抬笔动作、激光模块 TTL 控制用于笔迹校准。</p>
+</div>
+<div class="card"><h2>技术标签</h2>
+<span class="tag">ESP32-WROOM-32E</span><span class="tag">DC-DC Buck</span><span class="tag">LDO</span><span class="tag">HR4988E</span><span class="tag">CoreXY</span><span class="tag">PCB Layout</span><span class="tag">Altium Designer</span><span class="tag">电源完整性</span><span class="tag">步进电机</span><span class="tag">SPI/SD</span><span class="tag">CH340</span>
+</div>
+<div class="card"><h2>项目材料</h2>
+<div class="cert-box">
+<div class="item"><img src="certificates/ai-solver-3d-top.png" alt="PCB 3D 视图(顶面)"><p>PCB 3D 视图</p></div>
+<div class="item"><img src="certificates/ai-solver-top.png" alt="PCB 顶面布线"><p>PCB 顶面布线</p></div>
+<div class="item"><img src="certificates/ai-solver-3d-bottom.png" alt="PCB 3D 视图(底面)"><p>PCB 3D 底面</p></div>
+<div class="item"><img src="certificates/ai-solver-bottom.png" alt="PCB 底面布线"><p>PCB 底面布线</p></div>
+</div>
+<div class="cert-box" style="margin-top:20px">
+<div class="item"><p style="font-size:3em;margin-bottom:10px">&#128196;</p><p>项目海报</p><p><a href="certificates/ai-solver-poster.pdf">查看海报 PDF</a></p></div>
+<div class="item"><p style="font-size:3em;margin-bottom:10px">&#128214;</p><p>项目最终报告</p><p><a href="certificates/ai-solver-report.pdf">查看报告 PDF</a></p></div>
+</div></div></div>
+<div class="footer"><p>彭启航 &middot; AI解题机 · 智能书写机器人项目展示</p></div>
+</body></html>
